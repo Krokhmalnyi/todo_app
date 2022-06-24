@@ -5,8 +5,26 @@
       <router-link to="/about">About</router-link>
     </nav>
     <router-view/>
+    <todo-input/>
+    <todo-list/>
   </div>
 </template>
+
+<script>
+import TodoInput from '@/components/TodoInput.vue'
+import TodoList from './components/TodoList.vue'
+
+export default {
+  name: 'App',
+  components: {
+    TodoInput,
+    TodoList,
+  
+  }
+     }
+
+</script>
+
 
 <style>
 #app {

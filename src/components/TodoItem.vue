@@ -10,7 +10,9 @@
     </div>
         <button @click="updateTodoI(todo)" class="blue">{{editing? 'Update':'Edit'}}</button>
         <button @click="deleteTodo(todo.id)" >Delete</button>
+        <button @click="selectTodo(todo.id)" >Select</button>
    </div>
+
 
    
 </template>
@@ -24,11 +26,11 @@ export default {
     data() {
         return {
             todoText: "",
-            editing: false
+            editing: false,
         }
     },
    methods: {
-    ...mapActions(['deleteTodo', 'updateTodo']),
+    ...mapActions(['deleteTodo', 'updateTodo','selectTodo']),
     todoTextChange(e) {
         this.todoText = e.target.value;
     },
@@ -36,9 +38,9 @@ export default {
     this.editing = this.editing == true ? false : true;
     if (this.editing) {
         this.todoText = todo.title;
-        this.updateTodo(todo);
     } else {
         todo.title = this.todoText;
+        todo.complete = this.completed;
     }
     }
    }

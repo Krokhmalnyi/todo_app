@@ -2,26 +2,26 @@
   <div id="app">
     <nav>
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">Archive</router-link>
     </nav>
+    
     <router-view/>
-    <todo-input/>
-    <todo-list/>
   </div>
 </template>
 
 <script>
-import TodoInput from '@/components/TodoInput.vue'
-import TodoList from './components/TodoList.vue'
+
+import { mapActions } from 'vuex'
 
 export default {
   name: 'App',
-  components: {
-    TodoInput,
-    TodoList,
-  
+  mounted () {
+    this.initState()
+  },
+  methods: {
+    ...mapActions(['initState']),
   }
-     }
+    }
 
 </script>
 

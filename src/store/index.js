@@ -42,7 +42,9 @@ export default new Vuex.Store({
     },
     initState({commit}) {
       const todos = JSON.parse(localStorage.getItem('todos'))
-      commit('set_todos', todos)
+      if (todos) {
+        commit('set_todos', todos)
+      }
       
     }
 },

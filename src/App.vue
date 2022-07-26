@@ -4,27 +4,24 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">Archive</router-link>
     </nav>
-    
-    <router-view/>
+
+    <router-view />
   </div>
 </template>
 
 <script>
-
-import { mapActions } from 'vuex'
+import { mapActions } from "vuex";
 
 export default {
-  name: 'App',
-  mounted () {
-    this.initState()
+  name: "App",
+  mounted() {
+    this.initState();
   },
   methods: {
-    ...mapActions(['initState']),
-  }
-    }
-
+    ...mapActions(["initState"]),
+  },
+};
 </script>
-
 
 <style>
 #app {

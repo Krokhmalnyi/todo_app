@@ -2,13 +2,19 @@
 <div>
     <div class="container">     
         <h3 v-if="!editing">{{todo.title}}</h3>
-        <input v-bind:value="todoText"
-         @change="todoTextChange" 
+        <input v-model="todoText"
          v-else 
          type="text" 
          class="form-control">
     </div>
-        <button @click="updateTodoI(todo)" class="blue">{{editing? 'Update':'Edit'}}</button>
+        <button @click="changeTodoTitle()" 
+         v-if="editing"
+         class="blue">Update
+         </button>
+        <button v-else @click="editing = true;
+         todoText = todo.title; " 
+         class="blue">Edit
+        </button>
         <button @click="deleteTodo(todo.id)" >Delete</button>
         <button @click="selectTodo(todo.id)" >Select</button>
    </div>
@@ -31,17 +37,11 @@ export default {
     },
    methods: {
     ...mapActions(['deleteTodo', 'updateTodo','selectTodo']),
-    todoTextChange(e) {
-        this.todoText = e.target.value;
-    },
-    updateTodoI(todo) {
-    this.editing = this.editing == true ? false : true;
-    if (this.editing) {
-        this.todoText = todo.title;
-    } else {
-        todo.title = this.todoText;
-        todo.complete = this.completed;
-    }
+ 
+    changeTodoTitle() {
+        const todo = {...this.todo, title: this.todoText }
+        this.updateTodo(todo)
+        this.editing = false
     }
    }
 }
